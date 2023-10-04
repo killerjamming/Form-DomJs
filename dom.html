@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <title>Form</title>
+</head>
+<body>
+   
+        <div class="form">
+            <h1>Feedback-Form</h1>
+            <h2>This is purely just a try that i can store values in JSON or not !</h2>
+            <form class="form-formation">
+                <p>Full Name: </p>
+                <input type="text" name="fullname" placeholder="Enter your full name " required>
+                
+             <p>Country</p>
+             <select  name="country" >
+              <option value="India">india</option>
+             <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+                </select>
+
+              <p>State:</p>
+               <select  name="States" >
+               <option value="Gujarat">Gujarat</option>
+                 <option value="New Delhi">New Delhi</option>
+                <option value="Haryana">Haryana</option>
+                <option value ="Uttar-Pradesh">Uttar-Pradesh</option>
+                </select>
+
+               <p >Your Hobbies Are:</p>
+               <select id="demanding" name="Hobbies" multiple>
+               <option value="Travelling">Travelling</option>
+                <option value="Hich hikeing">Hich hikeing</option>
+               <option value="Dancing">Dancing</option>
+               <option value ="Singing">Singing</option>
+               <option value ="Coding">Codeing</option>
+               
+                 </select>
+
+
+                 <h3 >who you are:</h3>
+                 <p >Male:<input name="gender"  value="Male" type="radio" checked ></p>
+                 <br>
+                <p >Female:<input name="gender" value="Female" type="radio" ></p>
+                <br>
+                <p>Rather not say: <input name="gender" value="rather not say" type="radio"  ></p>
+               
+              <br>
+
+               <h3>where you here about us:</h3>
+                <p ><input  type="checkbox" name="Marketing" checked value="linkedin">linkedin</p>
+                <br>
+                <p ><input  type="checkbox" name="Marketing" value="hubspot">hubspot</p>
+                <br>
+                <p><input  type="checkbox" name="Marketing" value="Reddit">Reddit</p>
+                <br>
+                <p ><input  type="checkbox" name="Marketing" value="instagram">Instagram</p>
+                <br>
+                <p ><input type="checkbox" name="Marketing" value="directly on google">Directly on google</p>
+                <br>
+                <p>input one comment about that you didnt tell anyone:<input type="hidden"  name="form-filler---hidden" value="3419"></p>
+                <br>
+    
+                <p>Subject:</p>
+                 <textarea id="Jolly" name="subject" placeholder="Write something about your self.."  required> </textarea>
+
+                <button type="button" id="btn" onclick="fun_submit()">Submit</button>
+                
+            </form>
+        </div>
+
+    <!-- <script src="form.js"></script> -->
+    <script>
+
+        function fun_submit() {
+            const formData = {};
+            const fullName = document.querySelector('input[name=fullname]').value;
+            const country = document.querySelector('select[name=country] option:checked').value;
+            const states = document.querySelector('select[name=States] option:checked').value;
+            const hobbies = document.querySelectorAll('select[name=Hobbies] option:checked');
+            const gender = document.querySelector('input[name=gender]:checked').value;
+            const marketing = document.querySelectorAll('input[name=Marketing]:checked');
+            const subject = document.querySelector('textarea[name=subject]').value;
+            const hidden = document.querySelector('input[name=form-filler---hidden]').value;
+
+            formData['fullName'] = fullName;
+            formData['country'] = country;
+            formData['states'] = states;
+            formData['hobbies'] = Array.from(hobbies).map(item => item.value);
+            formData['gender'] = gender;
+            formData['marketing'] = Array.from(marketing).map(item => item.value);
+            formData['subject'] = subject;
+            formData['Hidden'] = hidden;
+            console.log(formData);
+        }
+
+    </script>
+</body>
+</html>
